@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-require('dotenv').config();
-const url = process.env.url;
-const connection = mongoose.connect(url);
+// require('dotenv').config();
+// const url = process.env.url;
+const connection = mongoose.connect(`mongodb+srv://narsimma123:yemul123@cluster0.mpwqvph.mongodb.net/EVE3`);
 
 
 const userSchema = mongoose.Schema({

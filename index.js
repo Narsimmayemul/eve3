@@ -8,14 +8,14 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 const cors = require('cors');
 app.use(cors());
-require('dotenv').config();
-const Key = process.env.key;
+// require('dotenv').config();
+// const Key = process.env.key;
 
 const authorization = (req , res , next)=>{
     try {
     const token = req.headers.authorization.split(" ")[1];
     console.log(token)
-    jwt.verify(token , Key ,async function(err , decode){
+    jwt.verify(token , "narsimma" ,async function(err , decode){
         console.log(decode);
         const user_ID = await User_module.findOne({_id: decode.userID})
         req.u_ID = user_ID;
@@ -64,7 +64,7 @@ try {
     const hashed = user.password;
     bcrypt.compare(data.password, hashed, function(err, result){
         if(result === true){
-            const token = jwt.sign({userID : user._id} , Key);
+            const token = jwt.sign({userID : user._id} , "narsimma");
             console.log(token)
             res.status(200).send({message:'you are loged in' , token:token});
             console.log(token);
